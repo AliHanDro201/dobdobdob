@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+/* Основные переменные */
+:root {
+    --bg-color: #242424;
+    --text-color: #ffffff;
+    --primary-color: #00eaff;
+    --secondary-color: #4CAF50;
+    --dark-bg: #333;
+    --message-bg: #555;
+    --font-family: 'Inter', sans-serif;
+    --font-size: 1.25rem;
+}
+
+/* Базовые стили */
+body {
+    margin: 0;
+    background: var(--bg-color);
+    font-family: var(--font-family);
+    color: var(--text-color);
+    font-size: var(--font-size);
+}
+
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeInAnimation ease 3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+/* Контейнеры */
+.container {
+    text-align: center;
+    width: 80%;
+    max-width: 500px;
+}
+
+.chat-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: var(--dark-bg);
+    border-radius: 8px;
+    overflow-y: auto;
+    max-height: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Сообщения чата */
+.messages {
+    max-height: 400px; 
+    overflow-y: auto; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 8px;
+}
+
+.user-message, .assistant-message {
+    padding: 10px 15px;
+    border-radius: 8px;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+.user-message {
+    align-self: flex-end;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+.assistant-message {
+    align-self: flex-start;
+    background-color: var(--message-bg);
+    color: var(--text-color);
+}
+
+/* Анимация и Canvas */
+@keyframes fadeInAnimation {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+#animationCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+    background: transparent;
+}
+
+canvas {
+    padding: 1.5rem 0;
+}
+
+/* Микрофон и иконки */
+.mic-active {
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+    transition: all 0.3s ease-in-out;
+}
+
+#micIcon {
+    font-size: 1.25rem;
+}
+
+/* Заголовки и текст */
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+}
+
+.message-text {
+    font-weight: 500;
+    opacity: .7;
+}
+
+.btn-info {
+    font-size: 1.25rem;
+    opacity: .6;
+}
+
+/* Кнопки и элементы управления */
+button {
+    font-family: inherit;
+    display: none;
+}
+
+/* Переключатель */
+.toggle {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    display: block;
+}
+
+.toggle input[type="checkbox"] {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input[type="checkbox"]:checked + .slider {
+    background-color: var(--secondary-color);
+}
+
+input[type="checkbox"]:disabled + .slider {
+    background-color: rgb(153, 153, 153);
+    opacity: .7;
+}
+
+input[type="checkbox"]:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Поле ввода */
+#chatInput {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    margin-top: 10px;
+}
+
+#chatInput:focus {
+    outline: none;
+    box-shadow: 0 0 5px var(--primary-color);
+}
